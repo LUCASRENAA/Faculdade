@@ -11,6 +11,57 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.decorators import user_passes_test
 
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from rest_framework import permissions
+
+from rest_framework.decorators import authentication_classes, permission_classes
+
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import  DjangoModelPermissionsOrAnonReadOnly
+
+from front_ent_SemFraude.models import Lote,Produto,OrgaoDonatario,OrgaoFiscalizador
+from front_ent_SemFraude.serializers import LoteSerializer,ProdutoSerializer,OrgaoDonatarioSerializer,\
+    OrgaoFiscalizadorSerializer,LoteSerializerCategory,ProdutoSerializerCategory
+
+
+class LoteViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    #permission_classes = [permissions.AllowAny]
+
+    queryset = Lote.objects.all()
+    serializer_class = LoteSerializer
+    http_method_names = ['get', 'post', 'put', 'path','delete']
+
+class ProdutoViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+
+    queryset = Produto.objects.all()
+    serializer_class = ProdutoSerializer
+    http_method_names = ['get', 'post', 'put', 'path','delete']
+
+class OrgaoDonatarioViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+
+    queryset = OrgaoDonatario.objects.all()
+    serializer_class = OrgaoDonatarioSerializer
+    http_method_names = ['get', 'post', 'put', 'path','delete']
+
+@authentication_classes([])
+@permission_classes([])
+class OrgaoFiscalizadorViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [permissions.SAFE_METHODS]
+
+    queryset = OrgaoFiscalizador.objects.all()
+    serializer_class = OrgaoFiscalizadorSerializer
+    http_method_names = ['get', 'post', 'put', 'path','delete']
+
+
 def check_admin(user):
    return user.is_superuser
 
@@ -28,6 +79,10 @@ def lote(request):
 
 def orgaoDonatario(request):
     return render(request, "front_ent_SemFraude/orgaoDonatario.html")
+
+
+def orgaoDonatario_id(request,id):
+    return render(request, "front_ent_SemFraude/orgaoDonatario_id.html",{"id":id})
 @user_passes_test(check_admin)
 
 def orgaoFiscalizador(request):
@@ -77,6 +132,10 @@ def json_example2(request):
         'is_active': True,
         'count': 28
     }
+    dump = json.dumps(data)
+    return HttpResponse(dump, content_type='application/json')
+
+
 
     vetor.append(data)
     

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script  src="https://code.jquery.com/jquery-3.1.1.min.js">
+
+
+</script>
+
+
+
+</head>
+<body>
+<script>
+      function pegar_titulo(id) {
+var request = $.ajax({
+url: "http://127.0.0.1:8000/users/{{ id }}/",
+type: "GET",
+data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+
+request.done(function(msg) {
+
+    alert(request.responseText);
+
+
+});
+
+
+request.fail(function(jqXHR, textStatus) {
+alert( "Request failed: " + textStatus );
+});
+}
+</script>
+
+<script>
+    pegar_titulo(1);
+</script>
+</body>
+</html>

@@ -86,7 +86,7 @@
       function pegar_titulo(id) {
 
 var request = $.ajax({
-url: "http://localhost:8080/produto/",
+url: "http://localhost:8080/produtos/",
 type: "GET",
 data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
 });

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script  src="https://code.jquery.com/jquery-3.1.1.min.js">
+
+
+</script>
+
+
+</head>
+<body>
+<script>
+    var request = $.ajax({
+url: "http://localhost:8080/donatarios/",
+type: "GET",
+data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+
+request.done(function(msg) {
+
+myBooks = JSON.parse(request.responseText);
+});
+
+</script>
+</body>
+</html>

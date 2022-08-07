@@ -24,7 +24,7 @@
               var nome = document.getElementsByName("nome")[0].value;
                             var endereco = document.getElementsByName("endereco")[0].value;
                             var telefone = document.getElementsByName("telefone")[0].value;
-              var horariofuncionamento = document.getElementsByName("horariofuncionamento")[0].value;
+              var horaFuncionamento = document.getElementsByName("horaFuncionamento")[0].value;
 
               var descricao = document.getElementsByName("descricao")[0].value;
               var id = document.getElementsByName("id")[0].value;
@@ -39,7 +39,7 @@
                       "nome": nome,
                        "endereco":endereco,
                        "telefone":telefone,
-                       "horariofuncionamento":horariofuncionamento,
+                       "horaFuncionamento":horaFuncionamento,
                       "descricao": descricao
                   }
 
@@ -60,7 +60,7 @@
                       "nome": nome,
                        "endereco":endereco,
                        "telefone":telefone,
-                       "horariofuncionamento":horariofuncionamento,
+                       "horaFuncionamento":horaFuncionamento,
                       "descricao": descricao
                   }
 
@@ -98,7 +98,7 @@
       function pegar_titulo(id) {
 
 var request = $.ajax({
-url: "http://localhost:8080/donatario/",
+url: "http://localhost:8080/donatarios/",
 type: "GET",
 data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
@@ -302,7 +302,7 @@ html, body {
 
                 <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Horario de funcionamento</label>
-    <input type="text" name="horariofuncionamento" class="form-control" id="exampleInputPassword1">
+    <input type="text" name="horaFuncionamento" class="form-control" id="exampleInputPassword1">
   </div>
                 <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Descrição</label>

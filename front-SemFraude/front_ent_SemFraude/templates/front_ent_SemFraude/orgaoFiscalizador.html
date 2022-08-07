@@ -35,7 +35,7 @@
                   }
 
 
-                  fetch("http://localhost:8080/fiscalizador/", {
+                  fetch("http://127.0.0.1:8000/api/api/orgaoFiscalizador/", {
                       method: "PUT",
                       headers: {'Content-Type': 'application/json'},
                       body: JSON.stringify(_data)
@@ -53,7 +53,7 @@
                   }
 
 
-                  fetch("http://localhost:8080/fiscalizador/", {
+                  fetch("http://127.0.0.1:8000/api/api/orgaoFiscalizador/", {
                       method: "POST",
                       headers: {'Content-Type': 'application/json'},
                       body: JSON.stringify(_data)
@@ -67,7 +67,7 @@
           function deletar(id){
 
 
-              fetch("http://localhost:8080/fiscalizador/"+ id + "/", {
+              fetch("http://127.0.0.1:8000/api/api/orgaoFiscalizador/"+ id + "/", {
   method: "DELETE",
   headers: {'Content-Type': 'application/json'},
 }).then(res => {
@@ -86,7 +86,7 @@
       function pegar_titulo(id) {
 
 var request = $.ajax({
-url: "http://localhost:8080/fiscalizador/",
+url: "http://127.0.0.1:8000/api/api/orgaoFiscalizador/",
 type: "GET",
 data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
